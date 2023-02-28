@@ -8,7 +8,7 @@ public class Restaurant {
     private String location;
     public LocalTime openingTime;
     public LocalTime closingTime;
-    private List<Item> menu = new ArrayList<Item>();
+    private List<Item> menu = new ArrayList<>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -67,7 +67,14 @@ public class Restaurant {
     //Blank declaration provided with non-standard return to design test cases
 
     public int calculateTotalOrderValue(List<String> orderItems){
-        return 1;
+        int total = 0;
+        for(Item i: menu){
+            for(String j:orderItems){
+                if(i.getName() == j)
+                    total+=i.getPrice();
+            }
+        }
+        return total;
     }
 
 }
