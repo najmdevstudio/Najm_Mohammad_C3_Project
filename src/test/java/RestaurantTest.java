@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -76,4 +78,53 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // The Method calculateTotalOrderValue is a part of the restaurant class since it requires the internal menu variables to function
+    //<<<<<<<<<<<<<<<<<<<<<<<BILL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void when_no_item_is_passed_total_should_be_zero(){
+        //List of selected items
+        List<String> orderItems = new ArrayList<>();
+
+        //Bill Amount
+        int orderValue = this.restaurant.calculateTotalOrderValue(orderItems);
+
+        Assertions.assertEquals(0,orderValue);
+
+
+    }
+
+    @Test
+    public void when_items_are_passed_total_should_return_sum_of_individual_price(){
+        // Menu initialized = [{"Sweet corn soup",119},{"Vegetable lasagne", 269}]
+
+        //Add New Items
+
+        this.restaurant.addToMenu("Coca Cola",10);
+        this.restaurant.addToMenu("French Fries",100);
+
+        List<String> orderItems = new ArrayList<>();
+        orderItems.add("Coca Cola");
+        orderItems.add("Vegetable lasagne");
+
+        //Bill
+        int orderValue= this.restaurant.calculateTotalOrderValue(orderItems);
+
+        //Assert
+        // Total Price = 10+269 = 279
+
+        Assertions.assertEquals(10+269,orderValue);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    //<<<<<<<<<<<<<<<<<<<<<<<BILL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }

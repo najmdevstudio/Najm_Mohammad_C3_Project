@@ -64,4 +64,10 @@ public class Restaurant {
         return name;
     }
 
+    //Blank declaration provided with non-standard return to design test cases
+
+    public int calculateTotalOrderValue(List<String> orderItems){
+        return 1;
+    }
+
 }
